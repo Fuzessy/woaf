@@ -1,0 +1,9 @@
+package woaf.subject.address;
+
+public interface AddressControllerState {
+
+	void actionPerformed(AAddressController aAddressController);
+
+	List<SimpleTransition> getTransitions();
+
+}

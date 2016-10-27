@@ -1,0 +1,30 @@
+package woaf.core.test;
+
+import javax.management.RuntimeErrorException;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import woaf.core.authentication.UserSession;
+
+public class LookupManager {
+	private LookupManager instance;
+	public LookupManager getInstance(){
+		return instance = instance == null ? 
+				new LookupManager() : instance;
+	}
+	
+	private LookupManager(){}
+	
+	public UserSession getUserSession(){
+		UserSession us = (UserSession) woafLookup("java:global/woaf_ee/woaf_ejb/UserSessionBean!woaf.core.authentication.UserSession");
+	}
+
+	private Object woafLookup(String string){
+		try {
+			return new InitialContext().lookup("java:global/woaf_ee/woaf_ejb/UserSessionBean!woaf.core.authentication.UserSession");
+		} catch (NamingException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+}

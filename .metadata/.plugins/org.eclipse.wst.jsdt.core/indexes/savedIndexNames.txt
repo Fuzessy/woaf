@@ -1,0 +1,7 @@
+INDEX VERSION 1.3+/home/fuzessy/dev/project/fuz/woaf/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1796826762.index
+1412183597.index
+499281382.index
+412537142.index
+831877750.index
+3773585032.index

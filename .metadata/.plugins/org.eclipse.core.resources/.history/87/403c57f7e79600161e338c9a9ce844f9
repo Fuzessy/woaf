@@ -1,0 +1,5 @@
+package woaf.subject.customer;
+
+public interface CustomerTHandler {
+
+}

@@ -1,0 +1,25 @@
+package woaf.controller.main;
+
+import java.util.List;
+
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.Transition;
+
+/**
+ * Az adott subjecthez kell biztosítani a megfelelő
+ *  felületeket, adatokat, állapotátmeneteket 
+ * @author fuzessy
+ *
+ */
+public interface ViewHandler {
+
+	String getCreateFormForSubject();
+	
+	public <T> List<Transition> getTransitions(T controller, AvaiableSimpleFunction function);
+
+	void setDTOForChoose(AbstractChooseFormController chooseFormController, AvaiableSimpleFunction simpleFuction);
+
+	String getDoFunctionForSubjectState(int stateId);
+
+	
+}

@@ -1,0 +1,11 @@
+package woaf.subject.customer;
+
+import woaf.dto.DTOCustomerForManioulation;
+
+public interface IFCustomerController {
+
+	DTOCustomerForManioulation getCustomerForInsert();
+
+	DTOCustomerForManioulation getCustomerForModify();
+
+}

@@ -1,0 +1,21 @@
+package woaf.controller.main;
+
+
+import javafx.scene.control.MenuBar;
+import woaf.core.LookupManager;
+import woaf.core.functions.AvaiableFunctionList;
+import woaf.core.functions.AvaiableFunctions;
+
+public class AvaiableMenuCreator {
+	
+	public MenuBar createAvaiableMenuBar(){
+		MenuBar menuBar = new MenuBar();
+		AvaiableFunctions avaiableFunctions = 
+				LookupManager.getInstance().getAvaiableFunctionsHandler().getAvaiableFunctions();
+		menuBar.getMenus().add(createMenus(avaiableFunctions.getFunctionList()));
+	}
+
+	private Menu createMenus(AvaiableFunctionList functionList) {
+		
+	}
+}

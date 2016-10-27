@@ -1,0 +1,43 @@
+package woaf.subject.customer;
+
+import java.io.Serializable;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import woaf.dto.DTOCustomerForManipulation;
+import woaf.subject.contract.ContractTHandler;
+
+@Stateless
+@Remote(CustomerTHandler.class)
+public class CustomerTHandlerBean implements CustomerTHandler, Serializable {
+
+	@PersistenceContext
+	EntityManager em;
+	
+	@Override
+	public void doRecordCustomer(DTOCustomerForManipulation dtoCustomerForInsert) {
+		System.out.println("Record customer meghívódott");
+	}
+
+	@Override
+	public void doModifyCustomer(DTOCustomerForManipulation dtoCustomer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doBlockCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doTerminateCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

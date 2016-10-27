@@ -1,0 +1,164 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the state database table.
+ * 
+ */
+@Entity
+@Table(name="state")
+@NamedQueries({ 
+	@NamedQuery(name = "State.findAll", query = "SELECT s FROM State s"), 
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st.contracts c WHERE sub.subjectId = :subjectid"),
+	@NamedQuery(name = "State.getStateByCustomers", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st.customers c WHERE sub.subjectId = :subjectid")
+})
+public class State implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="state_id")
+	private int stateId;
+
+	private String name;
+
+	//bi-directional many-to-one association to Contract
+	@OneToMany(mappedBy="state")
+	private List<Contract> contracts;
+
+	//bi-directional many-to-one association to Customer
+	@OneToMany(mappedBy="state")
+	private List<Customer> customers;
+
+	//bi-directional many-to-one association to StateMachine
+	@ManyToOne
+	@JoinColumn(name="state_machine_id")
+	private StateMachine stateMachine;
+
+	//bi-directional many-to-one association to StateTransition
+	@OneToMany(mappedBy="stateFrom")
+	private List<StateTransition> stateTransitionsFrom;
+
+	//bi-directional many-to-one association to StateTransition
+	@OneToMany(mappedBy="stateTo")
+	private List<StateTransition> stateTransitionsTo;
+
+	public State() {
+	}
+
+	public int getStateId() {
+		return this.stateId;
+	}
+
+	public void setStateId(int stateId) {
+		this.stateId = stateId;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Contract> getContracts() {
+		return this.contracts;
+	}
+
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	public Contract addContract(Contract contract) {
+		getContracts().add(contract);
+		contract.setState(this);
+
+		return contract;
+	}
+
+	public Contract removeContract(Contract contract) {
+		getContracts().remove(contract);
+		contract.setState(null);
+
+		return contract;
+	}
+
+	public List<Customer> getCustomers() {
+		return this.customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+	public Customer addCustomer(Customer customer) {
+		getCustomers().add(customer);
+		customer.setState(this);
+
+		return customer;
+	}
+
+	public Customer removeCustomer(Customer customer) {
+		getCustomers().remove(customer);
+		customer.setState(null);
+
+		return customer;
+	}
+
+	public StateMachine getStateMachine() {
+		return this.stateMachine;
+	}
+
+	public void setStateMachine(StateMachine stateMachine) {
+		this.stateMachine = stateMachine;
+	}
+
+	public List<StateTransition> getStateTransitionsFrom() {
+		return this.stateTransitionsFrom;
+	}
+
+	public void setStateTransitionsFrom(List<StateTransition> stateTransitionsFrom) {
+		this.stateTransitionsFrom = stateTransitionsFrom;
+	}
+
+	public StateTransition addStateTransitionsFrom(StateTransition stateTransitionsFrom) {
+		getStateTransitionsFrom().add(stateTransitionsFrom);
+		stateTransitionsFrom.setStateFrom(this);
+
+		return stateTransitionsFrom;
+	}
+
+	public StateTransition removeStateTransitionsFrom(StateTransition stateTransitionsFrom) {
+		getStateTransitionsFrom().remove(stateTransitionsFrom);
+		stateTransitionsFrom.setStateFrom(null);
+
+		return stateTransitionsFrom;
+	}
+
+	public List<StateTransition> getStateTransitionsTo() {
+		return this.stateTransitionsTo;
+	}
+
+	public void setStateTransitionsTo(List<StateTransition> stateTransitionsTo) {
+		this.stateTransitionsTo = stateTransitionsTo;
+	}
+
+	public StateTransition addStateTransitionsTo(StateTransition stateTransitionsTo) {
+		getStateTransitionsTo().add(stateTransitionsTo);
+		stateTransitionsTo.setStateTo(this);
+
+		return stateTransitionsTo;
+	}
+
+	public StateTransition removeStateTransitionsTo(StateTransition stateTransitionsTo) {
+		getStateTransitionsTo().remove(stateTransitionsTo);
+		stateTransitionsTo.setStateTo(null);
+
+		return stateTransitionsTo;
+	}
+
+}

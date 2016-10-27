@@ -1,0 +1,43 @@
+package woaf.core.functions;
+
+import java.io.Serializable;
+
+public class Transition implements Serializable{
+	private SubjectType subjectType;
+	private String name;
+	private int transitionId;
+	private Runnable function;
+	
+	public SubjectType getSubjectType() {
+		return subjectType;
+	}
+
+	public void setSubjectType(SubjectType subjectType) {
+		this.subjectType = subjectType;
+	}
+
+	public Runnable getFunction() {
+		return function;
+	}
+
+	public void setFunction(Runnable function) {
+		this.function = function;
+	}
+
+	public int getTransitionId() {
+		return transitionId;
+	}
+
+	public void setTransitionId(int transitionId) {
+		this.transitionId = transitionId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

@@ -1,0 +1,10 @@
+package woaf.subject.address;
+
+import woaf.dto.DTOAddress;
+
+public interface AddressTHandler {
+
+	int createNewAddress(DTOAddress dto);
+	void modifyAddress(DTOAddress dto);
+
+}

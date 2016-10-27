@@ -1,0 +1,48 @@
+package woaf.controller.subject.address;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import woaf.controller.main.WoafController;
+import woaf.dto.DTOAddress;
+import woaf.subject.address.IFAddressController;
+
+public class AddressController extends WoafController implements Initializable, IFAddressController{
+
+	@FXML TextField stfCountry;
+	@FXML TextField stfCity;
+	@FXML TextField stfStreet;
+	@FXML TextField stfNumber;
+	@FXML TextField stfZip;
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	}
+
+
+	@Override
+	public void setDTOAddress(DTOAddress address) {
+		stfCountry.setText(address.getCountry());
+		stfCity.setText(address.getCity());
+		stfZip.setText(address.getZipCode());
+		stfStreet.setText(address.getStreet());
+		stfNumber.setText(address.getNumber());
+	}
+
+
+	@Override
+	public DTOAddress getDTOAddress() {
+		DTOAddress address = new DTOAddress();
+		address.setCountry(stfCountry.getText());
+		address.setCity(stfCity.getText());
+		address.setZipCode(stfZip.getText());
+		address.setStreet(stfStreet.getText());
+		address.setNumber(stfNumber.getText());
+		return address;
+	}
+
+}

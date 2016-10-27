@@ -1,0 +1,31 @@
+package woaf.subject.customer;
+
+import woaf.dto.DTOCustomerForManioulation;
+
+public class CustomerTHandlerBean implements CustomerTHandler {
+
+	@Override
+	public void doRecordCustomer(DTOCustomerForManioulation dtoCustomerForInsert) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doModifyCustomer(DTOCustomerForManioulation dtoCustomer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doBlockCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doTerminateCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

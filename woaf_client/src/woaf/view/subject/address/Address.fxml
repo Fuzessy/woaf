@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="5.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woaf.controller.subject.address.AddressController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Ország" />
+      <Label text="Település" GridPane.rowIndex="1" />
+      <Label text="Irányítószám" GridPane.rowIndex="2" />
+      <Label text="Út/utca" GridPane.rowIndex="3" />
+      <Label text="Házszám/emelet" GridPane.rowIndex="4" />
+      <TextField fx:id="stfCountry" minWidth="200.0" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="stfCity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="stfZip" maxWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <TextField fx:id="stfStreet" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="stfNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   </children>
+   <GridPane.margin>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </GridPane.margin>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

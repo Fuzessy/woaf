@@ -1,0 +1,23 @@
+package woaf.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import woaf.dto.CustomerDTO;
+import woaf.entities.Customer;
+
+public class CustomerDao {
+
+	private EntityManager em;
+	
+	public CustomerDao(EntityManager em){
+		this.em = em;
+	}
+	
+	public List<CustomerDTO> getCustomersDTOByState(int stateId) {
+		em.createNamedQuery("",Customer.class)
+		return null;
+	}
+
+}

@@ -1,0 +1,50 @@
+package woaf.subject.contract;
+
+import java.util.List;
+
+import woaf.core.functions.AvaiableFunctionCommand;
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.AvaiableTransitionsHandler;
+import woaf.core.functions.SubjectType;
+import woaf.core.functions.Transition;
+
+/**
+ * Feladata, hogy a konkrét osztályokat paraméterül kapva,
+ * összeszerkessze a funkciók műjödését, akonkrét implementáció ismerete nélkül,
+ * csupán a subjectet, és a műveleteket ismeri.
+ * @author fuzessy
+ *
+ */
+public class ContractViewControllerWeaver {
+	private AContractController controller;
+	private ContractTHandler contractTHandler;
+	private AvaiableTransitionsHandler avaiableTransitionsHandler;
+	private AvaiableSimpleFunction function;
+	
+	
+	public ContractViewControllerWeaver(AContractController controller, ContractTHandler contractTHandler,
+			AvaiableTransitionsHandler avaiableTransitionsHandler, AvaiableSimpleFunction function) {
+		this.controller = controller;
+		this.contractTHandler = contractTHandler;
+		this.avaiableTransitionsHandler = avaiableTransitionsHandler;
+		this.function = function;
+	}
+
+	public List<Transition> weaveTransitions(){
+		List<Transition> transitions =
+				function.getCommand() == AvaiableFunctionCommand.CREATE_NEW ?
+						avaiableTransitionsHandler.getAvaiableStartTransitions(function.getSubjectType())
+						: avaiableTransitionsHandler.getAvaiableTransitions(function.getSubjectType(), function.getStateId());
+		for(Transition t : transitions){
+			if(t.getSubjectType() != SubjectType.CONTRACT){
+				throw new java.lang.IllegalArgumentException("Only " + SubjectType.CONTRACT + " supported! " + t.getSubjectType());
+			}
+			if(t.getTransitionId() == 1){ // Rögzítés
+				t.setFunction( () -> contractTHandler.doRecordContract(controller.getDTOContract()));
+			}else if(t.getTransitionId() == 2){ // Elbírálás
+				t.setFunction( () -> contractTHandler.doCheck(controller.getDTOContract()));
+			}
+		}
+		return transitions;
+	}
+}

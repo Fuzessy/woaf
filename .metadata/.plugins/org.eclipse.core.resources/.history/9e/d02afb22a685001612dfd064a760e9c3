@@ -1,0 +1,17 @@
+package woaf.core.test;
+
+import woaf.core.authentication.UserSession;
+
+public class LookupManager {
+	private LookupManager instance;
+	public LookupManager getInstance(){
+		return instance = instance == null ? 
+				new LookupManager() : instance;
+	}
+	
+	private LookupManager(){}
+	
+	public UserSession getUserSession(){
+		
+	}
+}

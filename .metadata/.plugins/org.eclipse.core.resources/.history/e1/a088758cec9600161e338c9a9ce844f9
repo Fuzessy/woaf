@@ -1,0 +1,8 @@
+package woaf.dto;
+
+public class DTOCustomerForManioulation {
+	private int customerId;
+	private String lastName;
+	private String firstName;
+	private int addressId;
+}

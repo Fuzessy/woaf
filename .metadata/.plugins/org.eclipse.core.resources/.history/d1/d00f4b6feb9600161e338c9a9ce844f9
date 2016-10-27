@@ -1,0 +1,26 @@
+package woaf.subject.customer;
+
+import java.util.List;
+
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.AvaiableTransitionsHandler;
+import woaf.core.functions.Transition;
+
+public class CustomerViewControllerWeaver {
+
+	private IFCustomerController controller;
+	private CustomerTHandler customerTHandler;
+	private AvaiableTransitionsHandler avaiableTransitionsHandler;
+	private AvaiableSimpleFunction function;
+	
+	public CustomerViewControllerWeaver(IFCustomerController controller, CustomerTHandler customerTHandler,
+			AvaiableTransitionsHandler avaiableTransitionsHandler, AvaiableSimpleFunction function) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<Transition> weaveTransitions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

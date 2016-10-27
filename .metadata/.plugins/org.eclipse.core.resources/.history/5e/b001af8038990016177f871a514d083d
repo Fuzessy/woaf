@@ -1,0 +1,29 @@
+package woaf.controller.main;
+
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+
+public class FormManager {
+
+	private String fxmlPath;
+	
+	private WoafController doController;
+	private Pane doPane;
+	
+	FormManager(String fxml){
+		fxmlPath = fxml;
+	}
+	
+	public void loadForm(){
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(fxmlPath));
+			doPane = (Pane) loader.load();
+			doController = loader.getController();
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+}

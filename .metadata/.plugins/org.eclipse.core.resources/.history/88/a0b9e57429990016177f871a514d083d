@@ -1,0 +1,31 @@
+package woaf.subject.address;
+
+import woaf.core.dao.DAOAddress;
+import woaf.dto.DTOAddress;
+
+public abstract class AAddressController {
+	
+	private AddressControllerState acState;
+	
+	public abstract void setDTOAddress(DTOAddress address);
+	public abstract DTOAddress getDTOAddress();
+	
+	public void setAddressStateNew() {
+		acState = new AddressControllerStateCreateNew();
+	}
+
+
+	public void setAddressStateModify() {
+		acState = new AddressControllerStateModify();
+	}
+	
+	public void setAddressId(int addressId) {
+		DAOAddress daoAddress = getDAOAddress();
+		DTOAddress dtoAddress = daoAddress.getAddressById(addressId);
+		
+	}
+	private DAOAddress getDAOAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

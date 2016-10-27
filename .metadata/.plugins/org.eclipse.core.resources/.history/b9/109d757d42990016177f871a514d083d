@@ -1,0 +1,8 @@
+package woaf.subject.customer;
+
+public enum CustomerState {
+	ALIVE(7),
+	TERMINATED(8),
+	FORBIDDEN(9);
+	
+}

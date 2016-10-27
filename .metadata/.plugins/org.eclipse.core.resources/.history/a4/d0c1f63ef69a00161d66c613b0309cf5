@@ -1,0 +1,20 @@
+package woaf.dao;
+
+import javax.persistence.EntityManager;
+
+import woaf.dto.DTOCustomer;
+import woaf.entities.Customer;
+
+public class CustomerDao {
+	
+	private EntityManager em;
+	
+	public CustomerDao(EntityManager em){
+		this.em = em;
+	}
+	
+	public DTOCustomer getDTOCustomer(Customer customer){
+		DTOCustomer dto = new DTOCustomer();
+		
+	}
+}

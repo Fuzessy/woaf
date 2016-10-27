@@ -1,0 +1,8 @@
+package woaf.dto;
+
+public class DTOForCustomerInsert {
+	private int customerId;
+	private String lastName;
+	private String firstName;
+	private int addressId;
+}

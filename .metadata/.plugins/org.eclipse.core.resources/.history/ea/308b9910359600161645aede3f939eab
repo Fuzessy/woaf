@@ -1,0 +1,139 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+import static javax.persistence.AccessType.FIELD;
+import static javax.persistence.AccessType.PROPERTY;
+
+
+/**
+ * The persistent class for the state database table.
+ * 
+ */
+@Entity
+@Table(name="state")
+@NamedQueries({ 
+	@NamedQuery(name = "State.findAll", query = "SELECT s FROM State s"), 
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st.contracts c WHERE sub.subjectId = :subjectid")
+})
+public class State implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="state_id")
+	private int stateId;
+
+	private String name;
+
+	//bi-directional many-to-one association to Contract
+	@OneToMany(mappedBy="state")
+	private List<Contract> contracts;
+
+	//bi-directional many-to-one association to StateMachine
+	@ManyToOne
+	@JoinColumn(name="state_machine_id")
+	private StateMachine stateMachine;
+
+	//bi-directional many-to-one association to StateTransition
+	@OneToMany(mappedBy="stateFrom")
+	private List<StateTransition> stateTransitionsFrom;
+
+	//bi-directional many-to-one association to StateTransition
+	@OneToMany(mappedBy="stateTo")
+	private List<StateTransition> stateTransitionsTo;
+
+	public State() {
+	}
+
+	public int getStateId() {
+		return this.stateId;
+	}
+
+	public void setStateId(int stateId) {
+		this.stateId = stateId;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Contract> getContracts() {
+		return this.contracts;
+	}
+
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	public Contract addContract(Contract contract) {
+		getContracts().add(contract);
+		contract.setState(this);
+
+		return contract;
+	}
+
+	public Contract removeContract(Contract contract) {
+		getContracts().remove(contract);
+		contract.setState(null);
+
+		return contract;
+	}
+
+	public StateMachine getStateMachine() {
+		return this.stateMachine;
+	}
+
+	public void setStateMachine(StateMachine stateMachine) {
+		this.stateMachine = stateMachine;
+	}
+
+	public List<StateTransition> getStateTransitionsFrom() {
+		return this.stateTransitionsFrom;
+	}
+
+	public void setStateTransitionsFrom(List<StateTransition> stateTransitionsFrom) {
+		this.stateTransitionsFrom = stateTransitionsFrom;
+	}
+
+	public StateTransition addStateTransitionTo(StateTransition stateTransitionTo) {
+		getStateTransitionsTo().add(stateTransitionTo);
+		stateTransitionTo.setStateFrom(this);
+
+		return stateTransitionTo;
+	}
+
+	public StateTransition removeStateTransitionTo(StateTransition stateTransitionTo) {
+		getStateTransitionsTo().remove(stateTransitionTo);
+		stateTransitionTo.setStateFrom(null);
+
+		return stateTransitionTo;
+	}
+
+	public List<StateTransition> getStateTransitionsTo() {
+		return this.stateTransitionsTo;
+	}
+
+	public void setStateTransitions(List<StateTransition> stateTransitionsTo) {
+		this.stateTransitionsTo = stateTransitionsTo;
+	}
+
+	public StateTransition addStateTransitionFrom(StateTransition stateTransitionFrom) {
+		getStateTransitionsFrom().add(stateTransitionFrom);
+		stateTransitionFrom.setStateTo(this);
+
+		return stateTransitionFrom;
+	}
+
+	public StateTransition removeStateTransitionFrom(StateTransition stateTransitionFrom) {
+		getStateTransitionsFrom().remove(stateTransitionFrom);
+		stateTransitionFrom.setStateTo(null);
+
+		return stateTransitionFrom;
+	}
+
+}

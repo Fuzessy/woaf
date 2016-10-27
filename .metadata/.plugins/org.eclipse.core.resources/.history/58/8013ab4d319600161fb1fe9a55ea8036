@@ -1,0 +1,12 @@
+@Table(name="state")
+@NamedQueries({ 
+	@NamedQuery(name = "State.findAll", query = "SELECT s FROM State s"), 
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st.contracts c WHERE sub.subjectId = :subjectid"),
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st. c WHERE sub.subjectId = :subjectid")
+})
+
+@Table(name="contract")
+@NamedQueries({ 
+	@NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"), 
+	@NamedQuery(name = "Contract.findAllByState", query = "SELECT c FROM Contract c WHERE c.state.stateId = :stateId") 
+})

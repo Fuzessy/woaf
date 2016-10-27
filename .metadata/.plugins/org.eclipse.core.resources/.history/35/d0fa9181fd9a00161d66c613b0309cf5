@@ -1,0 +1,57 @@
+package woaf.controller.subject.contract;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import woaf.controller.main.WoafController;
+import woaf.dto.DTOContract;
+import woaf.subject.contract.AContractController;
+import javafx.scene.control.Button;
+
+public class ContractController implements Initializable, AContractController, WoafController {
+
+	@FXML TextField stfCustomerName;
+	@FXML TextField stfContractStatus;
+	@FXML TextField stfContractNumber;
+	@FXML TextField nmfContractId;
+
+	private DTOContract dtoContract;
+	@FXML TextField stfCustomerId;
+	@FXML Button btnChooseCustomer;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+	}
+	
+	public void setData(DTOContract dtoContract){
+		this.dtoContract = dtoContract;
+		this.nmfContractId.setText(Integer.toString(dtoContract.getContractId()));
+		this.stfContractNumber.setText(dtoContract.getContractNumber());
+		this.stfCustomerName.setText(dtoContract.getCustomerName());
+		this.stfCustomerId.setText(Integer.toString(dtoContract.getCustomerId()));
+		
+	}
+	
+	public DTOContract getData(){
+		if(this.dtoContract == null) dtoContract = new DTOContract();
+		dtoContract.setContractNumber(this.stfContractNumber.getText());
+		dtoContract.setCustomerName(stfCustomerName.getText());
+		dtoContract.setCustomerId(Integer.parseInt(stfCustomerId.getText()));
+		return dtoContract;
+	}
+
+	@Override
+	public DTOContract getDTOContract() {
+		return getData();
+	}
+
+	@Override
+	public void setParentStage(Stage stage) {
+		
+	}
+
+}

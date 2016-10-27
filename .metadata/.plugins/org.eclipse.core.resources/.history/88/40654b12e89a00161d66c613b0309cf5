@@ -1,0 +1,111 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the address database table.
+ * 
+ */
+@Entity
+@Table(name="address")
+@NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
+public class Address implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="address_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int addressId;
+
+	private String city;
+
+	private String country;
+
+	private String number;
+
+	private String street;
+
+	@Column(name="zip_code")
+	private String zipCode;
+
+	//bi-directional many-to-one association to Customer
+	@OneToMany(mappedBy="address")
+	private List<Customer> customers;
+
+	public Address() {
+	}
+
+	public int getAddressId() {
+		return this.addressId;
+	}
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getStreet() {
+		return this.street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getZipCode() {
+		return this.zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public List<Customer> getCustomers() {
+		return this.customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+	public Customer addCustomer(Customer customer) {
+		getCustomers().add(customer);
+		customer.setAddress(this);
+
+		return customer;
+	}
+
+	public Customer removeCustomer(Customer customer) {
+		getCustomers().remove(customer);
+		customer.setAddress(null);
+
+		return customer;
+	}
+
+}

@@ -1,0 +1,14 @@
+package woaf.subject.customer;
+
+import java.util.List;
+
+import woaf.core.functions.Transition;
+
+public class CustomerViewControllerWeaver {
+
+	public List<Transition> weaveTransitions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

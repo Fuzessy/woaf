@@ -1,0 +1,10 @@
+package woaf.controller.main;
+
+import javafx.stage.Stage;
+
+public abstract class WoafController {
+	protected Stage ownerStage;
+	public void setParentStage(Stage stage){
+		this.ownerStage = stage;
+	}
+}

@@ -1,0 +1,67 @@
+package woaf.controller.subject.contract;
+
+import java.util.List;
+
+import woaf.controller.main.ViewHandler;
+import woaf.core.LookupManager;
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.Transition;
+import woaf.dto.DTOContract;
+import woaf.subject.contract.ContractViewControllerWeaver;
+import woaf.subject.contract.IFContractController;
+
+public class ContractViewHandler implements ViewHandler {
+	
+	@Override
+	public String getCreateFormForSubject() {
+		return "/woaf/view/subject/contract/Contract.fxml";
+	}
+	
+	@Override
+	public String getDoFunctionForSubjectState(int stateId) {
+		return "/woaf/view/subject/contract/Contract.fxml";
+	}
+
+	@Override
+	public <T> List<Transition> getTransitions(T controller, AvaiableSimpleFunction function){
+		
+		ContractViewControllerWeaver viewHandler = 
+				new ContractViewControllerWeaver(
+						(IFContractController) controller,
+						LookupManager.getInstance().getContractTHandler(),
+						LookupManager.getInstance().getAvaiableTransitionsHandler(),
+						function);
+		return viewHandler.weaveTransitions();
+	}
+
+	@Override
+	public Class<?> getDTOForChooseDTOClass() {
+		return DTOContract.class;
+	}
+
+//	/**
+//	 * Táblázat fejlécének beállítása, és a szükséges adatok átadása
+//	 */
+//	@Override
+//	public void setDTOForChoose(AbstractChooseFormController controller,
+//			AvaiableSimpleFunction simpleFuction) {
+//		
+//		DTOTableBoxBuilder tbxBuilder = new DTOTableBoxBuilder();
+//		
+//		controller.setTableBoxColumns(tbxBuilder.getTableColumns(DTOContract.class));
+//		
+//		List contracts = LookupManager.getInstance()
+//			.getDTOCollectorForChoose()
+//			.getDTOListForChoose(simpleFuction, DTOContract.class);
+//																																																																																	
+//		ObservableList observableList = FXCollections.observableArrayList(contracts);
+//		controller.setTableViewRows(observableList);
+//	}
+
+	
+
+
+	
+
+
+}

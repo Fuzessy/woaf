@@ -1,0 +1,64 @@
+package woaf.controller.main;
+
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+
+public class FormManager {
+
+	private String doFxml, frameFxml;
+	private Stage mainStage;
+	
+	private WoafController doController;
+	private Pane doPane;
+	
+	FormManager(String doFxml, String frameFxml, Stage mainStage){
+		this.doFxml = doFxml;
+		this.frameFxml = frameFxml;
+		this.mainStage = mainStage;
+	}
+	
+	public void loadDoForm(){
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(doFxml));
+			doPane = (Pane) loader.load();
+			doController = loader.getController();
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public WoafController getDoController() {
+		return doController;
+	}
+
+	public void setDoController(WoafController doController) {
+		this.doController = doController;
+	}
+
+	public Pane getDoPane() {
+		return doPane;
+	}
+
+	public void setDoPane(Pane doPane) {
+		this.doPane = doPane;
+	}
+
+	public void loadAbstractDoForm() {
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(frameFxml));
+			BorderPane doPane = (BorderPane) loader.load();
+			doPane.setCenter(doPane);
+			Scene doScene = new Scene(doPane);
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+}

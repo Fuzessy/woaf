@@ -1,0 +1,69 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the subject database table.
+ * 
+ */
+@Entity
+@Table(name="subject")
+@NamedQuery(name="Subject.findAll", query="SELECT s FROM Subject s")
+public class Subject implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="subject_id")
+	private int subjectId;
+
+	private String name;
+
+	//bi-directional many-to-one association to StateMachine
+	@OneToMany(mappedBy="subject")
+	private List<StateMachine> stateMachines;
+
+	public Subject() {
+	}
+
+	public int getSubjectId() {
+		return this.subjectId;
+	}
+
+	public void setSubjectId(int subjectId) {
+		this.subjectId = subjectId;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<StateMachine> getStateMachines() {
+		return this.stateMachines;
+	}
+
+	public void setStateMachines(List<StateMachine> stateMachines) {
+		this.stateMachines = stateMachines;
+	}
+
+	public StateMachine addStateMachine(StateMachine stateMachine) {
+		getStateMachines().add(stateMachine);
+		stateMachine.setSubject(this);
+
+		return stateMachine;
+	}
+
+	public StateMachine removeStateMachine(StateMachine stateMachine) {
+		getStateMachines().remove(stateMachine);
+		stateMachine.setSubject(null);
+
+		return stateMachine;
+	}
+
+}

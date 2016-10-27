@@ -1,0 +1,34 @@
+package woaf.subject.customer;
+
+import java.io.Serializable;
+
+import woaf.dto.DTOCustomerForManioulation;
+
+@Stateless
+public class CustomerTHandlerBean implements CustomerTHandler, Serializable {
+
+	@Override
+	public void doRecordCustomer(DTOCustomerForManioulation dtoCustomerForInsert) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doModifyCustomer(DTOCustomerForManioulation dtoCustomer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doBlockCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void doTerminateCustomer(Integer customerId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

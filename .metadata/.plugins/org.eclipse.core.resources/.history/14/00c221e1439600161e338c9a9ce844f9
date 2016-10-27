@@ -1,0 +1,36 @@
+package woaf.controller.subject.customer;
+
+import java.util.List;
+
+import woaf.controller.main.AbstractChooseFormController;
+import woaf.controller.main.ViewHandler;
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.Transition;
+
+public class CustomerViewHandler implements ViewHandler{
+
+	@Override
+	public String getCreateFormForSubject() {
+		return "/woaf/view/subject/customer/Customer.fxml";
+	}
+
+	@Override
+	public <T> List<Transition> getTransitions(T controller, AvaiableSimpleFunction function) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setDTOForChoose(AbstractChooseFormController chooseFormController,
+			AvaiableSimpleFunction simpleFuction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getDoFunctionForSubjectState(int stateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

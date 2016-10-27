@@ -1,0 +1,32 @@
+package woaf.subject.address;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import woaf.core.dao.DAOAddress;
+import woaf.dto.DTOAddress;
+import woaf.entities.Address;
+
+@Stateless
+@Remote(DAOAddress.class, AddressTHandler.class)
+public class AddressTHandlerBean implements DAOAddress, AddressTHandler{
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public DTOAddress getAddressById(int addressId) {
+		Address address = em.find(Address.class, addressId);
+		DTOAddress dto = new DTOAddress();
+		dto.setAddressId(address.getAddressId());
+		dto.setCountry(address.getCountry());
+		dto.setCity(address.getCity());
+		dto.setNumber(address.getNumber());
+		dto.setStreet(address.getStreet());
+		dto.setZipCode(address.getZipCode());
+		return dto;
+	}
+
+}

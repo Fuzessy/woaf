@@ -1,0 +1,11 @@
+package woaf.subject.customer;
+
+import woaf.dto.DTOCustomerForManioulation;
+
+public interface CustomerTHandler {
+
+	public void doRecordCustomer(DTOCustomerForManioulation dtoCustomerForInsert);
+	public void doModifyCustomer(DTOCustomerForManioulation dtoCustomer);
+	public void doBlockCustomer(Integer customerId);
+	public void doTerminateCustomer(Integer customerId);
+}

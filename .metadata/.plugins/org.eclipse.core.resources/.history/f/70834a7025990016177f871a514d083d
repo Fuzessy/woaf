@@ -1,0 +1,8 @@
+package woaf.subject.address;
+
+import woaf.dto.DTOAddress;
+
+public abstract class AAddressController {
+	public abstract void setDTOAddress(DTOAddress address);
+	public abstract DTOAddress getDTOAddress();
+}

@@ -1,0 +1,12 @@
+package woaf.dao;
+
+import javax.persistence.EntityManager;
+
+public class CustomerDao {
+	
+	private EntityManager em;
+	
+	public CustomerDao(EntityManager em){
+		this.em = em;
+	}
+}

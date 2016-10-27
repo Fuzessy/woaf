@@ -1,0 +1,5 @@
+package woaf.core.functions;
+
+public class SimpleTransition {
+
+}

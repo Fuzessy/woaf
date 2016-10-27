@@ -1,0 +1,9 @@
+package woaf.subject.contract;
+
+import woaf.dto.DTOContract;
+
+public abstract class  IFContractController {
+
+	public abstract DTOContract getDTOContract();
+
+}

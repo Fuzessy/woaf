@@ -1,0 +1,6 @@
+select distinct state.name from contract
+JOIN state ON state.state_id = contract.state_id
+
+drop view v_user_groups;
+
+

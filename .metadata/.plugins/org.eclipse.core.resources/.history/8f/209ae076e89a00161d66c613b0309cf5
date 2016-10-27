@@ -1,0 +1,57 @@
+package woaf.subject.address;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import woaf.core.dao.DAOAddress;
+import woaf.dto.DTOAddress;
+import woaf.entities.Address;
+
+@Stateless
+@Remote({DAOAddress.class, AddressTHandler.class})
+public class AddressTHandlerBean implements DAOAddress, AddressTHandler{
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public DTOAddress getAddressById(int addressId) {
+		Address address = em.find(Address.class, addressId);
+		DTOAddress dto = new DTOAddress();
+		dto.setAddressId(address.getAddressId());
+		dto.setCountry(address.getCountry());
+		dto.setCity(address.getCity());
+		dto.setNumber(address.getNumber());
+		dto.setStreet(address.getStreet());
+		dto.setZipCode(address.getZipCode());
+		return dto;
+	}
+
+	@Override
+	public DTOAddress createNewAddress(DTOAddress dto) {
+		Address address = loadAddressFromDTO(dto);
+		//address.setAddressId(0);
+		em.persist(address);
+		em.flush();
+		dto.setAddressId(address.getAddressId());
+		return dto;
+	}
+
+	@Override
+	public void modifyAddress(DTOAddress dto) {
+		em.merge(loadAddressFromDTO(dto));
+	}
+	
+	private Address loadAddressFromDTO(DTOAddress dto) {
+		Address address =  new Address();
+		address.setCountry(dto.getCountry());
+		address.setCity(dto.getCity());
+		address.setNumber(dto.getNumber());
+		address.setStreet(dto.getStreet());
+		address.setZipCode(dto.getZipCode());
+		return address;
+	}
+
+}

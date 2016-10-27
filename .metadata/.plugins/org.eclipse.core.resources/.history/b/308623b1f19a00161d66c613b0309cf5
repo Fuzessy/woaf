@@ -1,0 +1,5 @@
+package woaf.dao;
+
+public class CustomerDao {
+
+}

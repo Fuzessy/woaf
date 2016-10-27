@@ -1,0 +1,14 @@
+package woaf.subject.address;
+
+import woaf.core.dao.DAOAddress;
+import woaf.dto.DTOAddress;
+
+public class AddressTHandlerBean implements DAOAddress {
+
+	@Override
+	public DTOAddress getAddressById(int addressId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,14 @@
+package woaf.dao;
+
+import java.util.List;
+
+import woaf.dto.CuctomerDTO;
+
+public class CustomerDao {
+
+	public List<CuctomerDTO> getCustomersDTOByState(int stateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

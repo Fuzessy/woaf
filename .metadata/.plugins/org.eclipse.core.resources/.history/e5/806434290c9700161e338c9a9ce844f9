@@ -1,0 +1,34 @@
+package woaf.controller.subject.address;
+
+import java.util.List;
+
+import woaf.controller.main.ViewHandler;
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.Transition;
+
+public class AddressViewHandler implements ViewHandler{
+
+	@Override
+	public String getCreateFormForSubject() {
+		return "";
+	}
+
+	@Override
+	public <T> List<Transition> getTransitions(T controller, AvaiableSimpleFunction function) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDoFunctionForSubjectState(int stateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<?> getDTOForChooseDTOClass() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

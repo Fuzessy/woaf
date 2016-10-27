@@ -1,0 +1,86 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+import java.util.Calendar;
+
+
+/**
+ * The persistent class for the contract database table.
+ * 
+ */
+@Table(name="contract")
+@NamedQueries({ 
+	@NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"), 
+	@NamedQuery(name = "Contract.findAllByState", query = "SELECT c FROM Contract c WHERE c.state.stateId = :stateId") 
+})
+
+public class Contract implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="contract_id")
+	private int contractId;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="contract_date")
+	private Calendar contractDate;
+
+	@Column(name="contract_number")
+	private String contractNumber;
+
+	//bi-directional many-to-one association to Customer
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+
+	//bi-directional many-to-one association to State
+	@ManyToOne
+	@JoinColumn(name="state_id")
+	private State state;
+
+	public Contract() {
+	}
+
+	public int getContractId() {
+		return this.contractId;
+	}
+
+	public void setContractId(int contractId) {
+		this.contractId = contractId;
+	}
+
+	public Calendar getContractDate() {
+		return this.contractDate;
+	}
+
+	public void setContractDate(Calendar contractDate) {
+		this.contractDate = contractDate;
+	}
+
+	public String getContractNumber() {
+		return this.contractNumber;
+	}
+
+	public void setContractNumber(String contractNumber) {
+		this.contractNumber = contractNumber;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public State getState() {
+		return this.state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+}

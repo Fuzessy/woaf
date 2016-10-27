@@ -1,0 +1,15 @@
+package woaf.subject.customer;
+
+import woaf.dto.DTOCustomerForManipulation;
+
+public abstract class ACustomerController {
+
+	public abstract DTOCustomerForManipulation getCustomerForInsert();
+
+	public abstract DTOCustomerForManipulation getCustomerForModify();
+	
+	public String chooseOrModifyAddress(int addressId){
+		return null;
+	}
+
+}

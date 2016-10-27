@@ -1,0 +1,12 @@
+package woaf.subject.address;
+
+import woaf.dto.DTOAddress;
+
+public class AddressControllerStateCreateNew implements AddressControllerState {
+
+	@Override
+	public void actionPerformed(AAddressController addressController) {
+		DTOAddress dto = addressController.getDAOAddress();
+	}
+
+}

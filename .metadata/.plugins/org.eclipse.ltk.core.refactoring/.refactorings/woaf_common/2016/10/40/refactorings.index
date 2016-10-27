@@ -1,0 +1,8 @@
+1475596489297	Rename method 'getAvaiableTRansitions'
+1475611639508	Move compilation unit
+1475613663671	Move package
+1475616429242	Rename type 'ContractWiewHandler'
+1475616457935	Rename type 'ContractWievHandler'
+1475688911255	Rename type 'ContractController'
+1475692066741	Rename field 'transitionHandler'
+1475692648636	Rename method 'getDTOCOntract'

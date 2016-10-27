@@ -1,0 +1,5 @@
+package woaf.dto;
+
+public class DTOForCustomerInsert {
+
+}

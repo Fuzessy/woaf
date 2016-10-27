@@ -1,0 +1,5 @@
+package woaf.core.controller;
+
+public interface WoafController {
+	public void setOwnerStage(Stage stage);
+}

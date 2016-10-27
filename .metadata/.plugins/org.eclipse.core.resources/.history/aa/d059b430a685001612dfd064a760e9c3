@@ -1,0 +1,17 @@
+package woaf.core.test;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import woaf.core.authentication.UserSession;
+
+public class Test {
+	public Test() throws NamingException{
+		UserSession us = (UserSession) new InitialContext().lookup("java:global/woaf_ee/woaf_ejb/UserSessionBean!woaf.core.authentication.UserSession");
+		us.login("aa", "bb");
+	}
+	
+	public static void main(String[] args) throws NamingException {
+		new Test();
+	}
+}

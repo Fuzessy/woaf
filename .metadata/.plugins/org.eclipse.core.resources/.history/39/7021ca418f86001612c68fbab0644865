@@ -1,0 +1,49 @@
+package woaf.controller.main;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import woaf.core.LookupManager;
+import woaf.core.functions.AvaiableFunctionList;
+import woaf.core.functions.AvaiableFunctions;
+
+public class AvaiableMenuCreator {
+	
+	public MenuBar createAvaiableMenuBar(){
+		MenuBar menuBar = new MenuBar();
+		AvaiableFunctions avaiableFunctions = 
+				LookupManager.getInstance().getAvaiableFunctionsHandler().getAvaiableFunctions();
+		menuBar.getMenus().addAll(createMainMenus(avaiableFunctions.getFunctionList()));
+		return menuBar;
+	}
+
+	private List<Menu> createMainMenus(AvaiableFunctionList functionList) {
+		List<Menu> menus = new ArrayList<>();
+		for(AvaiableFunctions functions : functionList.getFunctions()){
+			Menu menu = new Menu();
+			menu.setText(functions.getFunctionName());
+			menus.add(menu);
+			menu.getItems().addAll(createMenu(functions));
+		}
+		return menus;
+	}
+
+	private List<MenuItem> createMenu(AvaiableFunctions functions) {
+		List<MenuItem> menuItems = new ArrayList<>();
+		if(functions.isSimpleFunction()){
+			MenuItem menuItem = new MenuItem();
+			menuItem.setText(functions.getFunctionName());
+			menuItems.add(menuItem);
+		}else{
+			for(AvaiableFunctions fs : functions.getFunctionList().getFunctions()){
+				menuItem = new Menu();
+				menuItem.setText(fs.getFunctionName());
+				
+			}
+		}
+	}
+}

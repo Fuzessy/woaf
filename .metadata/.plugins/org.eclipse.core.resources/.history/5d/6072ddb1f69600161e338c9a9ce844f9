@@ -1,0 +1,50 @@
+package woaf.controller.subject.customer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import woaf.controller.main.AbstractChooseFormController;
+import woaf.controller.main.DTOTableBoxBuilder;
+import woaf.controller.main.ViewHandler;
+import woaf.core.LookupManager;
+import woaf.core.functions.AvaiableSimpleFunction;
+import woaf.core.functions.Transition;
+import woaf.dto.DTOContract;
+import woaf.dto.DTOCustomer;
+import woaf.subject.customer.CustomerViewControllerWeaver;
+import woaf.subject.customer.IFCustomerController;
+
+public class CustomerViewHandler implements ViewHandler{
+
+	@Override
+	public String getCreateFormForSubject() {
+		return "/woaf/view/subject/customer/Customer.fxml";
+	}
+	
+	@Override
+	public String getDoFunctionForSubjectState(int stateId) {
+		return "/woaf/view/subject/customer/Customer.fxml";
+	}
+
+	@Override
+	public <T> List<Transition> getTransitions(T controller, AvaiableSimpleFunction function) {
+		CustomerViewControllerWeaver viewHandler = 
+				new CustomerViewControllerWeaver(
+						(IFCustomerController) controller,
+						LookupManager.getInstance().getCustomerTHandler(),
+						LookupManager.getInstance().getAvaiableTransitionsHandler(),
+						function);
+		return viewHandler.weaveTransitions();
+	}
+
+	@Override
+	public Class<?> getDTOForChooseDTOClass() {
+		return DTOCustomer.class;
+	}
+
+
+}

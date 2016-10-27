@@ -1,0 +1,27 @@
+@Table(name="state")
+@NamedQueries({ 
+	@NamedQuery(name = "State.findAll", query = "SELECT s FROM State s"), 
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st.contracts c WHERE sub.subjectId = :subjectid"),
+	@NamedQuery(name = "State.getStateByContracts", query = "SELECT distinct st FROM Subject sub  join sub.stateMachines sm join sm.states st join st. c WHERE sub.subjectId = :subjectid")
+})
+
+@Table(name="contract")
+@NamedQueries({ 
+	@NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"), 
+	@NamedQuery(name = "Contract.findAllByState", query = "SELECT c FROM Contract c WHERE c.state.stateId = :stateId") 
+})
+
+@Entity
+@Table(name="state_transition")
+@NamedQueries({ 
+	@NamedQuery(name = "StateTransition.findAll", query = "SELECT s FROM StateTransition s"), 
+	@NamedQuery(name = "StateStransition.findAllByStateFrom", query = "   SELECT sTransition  FROM StateTransition sTransition JOIN sTransition.stateTo stateTo  WHERE stateTo.stateMachine.subject.subjectId = :subjectid  AND sTransition.stateFrom.stateId = :stateFrom"),
+	@NamedQuery(name = "StateStransition.findAllStartStateTransition", query = "   SELECT sTransition  FROM StateTransition sTransition JOIN sTransition.stateTo stateTo  WHERE stateTo.stateMachine.subject.subjectId = :subjectid  AND sTransition.stateFrom is null")
+})
+
+@Entity
+@Table(name="user")
+@NamedQueries({ 
+	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"), 
+	@NamedQuery(name = "User.findWithAuthenticationData", query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password") 
+})

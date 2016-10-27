@@ -1,0 +1,21 @@
+package woaf.controller.main;
+
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+
+public class FormUtility {
+
+	public void show(String fxml){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(fxml));
+			Pane createPane = (Pane) loader.load();
+			WoafController creatorController = loader.getController();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+}

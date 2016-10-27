@@ -1,0 +1,7 @@
+package woaf.controller.subject.customer;
+
+import javafx.fxml.Initializable;
+
+public class CustomerController implements Initializable, IFCustomerController{
+
+}

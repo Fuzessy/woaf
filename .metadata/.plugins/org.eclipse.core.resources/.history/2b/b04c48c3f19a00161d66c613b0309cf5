@@ -1,0 +1,12 @@
+package woaf.dao;
+
+import java.util.List;
+
+public class CustomerDao {
+
+	public List<T> getCustomersDTOByState(int stateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,52 @@
+package woaf.controller.subject.customer;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import woaf.dto.DTOAddress;
+import woaf.dto.DTOCustomer;
+import woaf.dto.DTOCustomerForManipulation;
+import woaf.subject.customer.IFCustomerController;
+
+public class CustomerController implements Initializable, IFCustomerController{
+
+	@FXML TextField stfFirstName;
+	@FXML TextField stfLastName;
+	@FXML TextField stfAddress;
+	@FXML TextField stfCustomerId;
+	private int addressId;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public DTOCustomerForManipulation getCustomerForInsert() {
+		DTOCustomerForManipulation dto = new DTOCustomerForManipulation();
+		dto.setFirstName(stfFirstName.getText());
+		dto.setLastName(stfLastName.getText());
+		dto.setAddressId(addressId);
+		return dto;
+	}
+
+	@Override
+	public DTOCustomerForManipulation getCustomerForModify() {
+		DTOCustomerForManipulation dto = new DTOCustomerForManipulation();
+		dto.setCustomerId(Integer.parseInt(stfCustomerId.getText()));
+		dto.setFirstName(stfFirstName.getText());
+		dto.setLastName(stfLastName.getText());
+		dto.setAddressId(addressId);
+		return dto;
+	}
+	
+	
+
+	@FXML public void f_ChooseOrEditAddress() {
+		
+	}
+
+}

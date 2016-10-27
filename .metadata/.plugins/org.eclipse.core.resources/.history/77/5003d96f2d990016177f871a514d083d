@@ -1,0 +1,103 @@
+package woaf.controller.subject.customer;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import woaf.controller.main.WoafController;
+import woaf.controller.subject.address.AddressViewHandler;
+import woaf.core.LookupManager;
+import woaf.dto.DTOCustomerForManipulation;
+import woaf.subject.address.AAddressController;
+import woaf.subject.customer.ACustomerController;
+
+public class CustomerController extends ACustomerController implements Initializable, WoafController{
+
+	private Stage ownerStage;
+	@FXML TextField stfFirstName;
+	@FXML TextField stfLastName;
+	@FXML TextField stfAddress;
+	@FXML TextField stfCustomerId;
+	private int addressId;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+	}
+	
+	public void setParentStage(Stage stage){
+		this.ownerStage = stage;
+	}
+
+	@Override
+	public DTOCustomerForManipulation getCustomerForInsert() {
+		DTOCustomerForManipulation dto = new DTOCustomerForManipulation();
+		dto.setFirstName(stfFirstName.getText());
+		dto.setLastName(stfLastName.getText());
+		dto.setAddressId(addressId);
+		return dto;
+	}
+
+	@Override
+	public DTOCustomerForManipulation getCustomerForModify() {
+		DTOCustomerForManipulation dto = new DTOCustomerForManipulation();
+		dto.setCustomerId(Integer.parseInt(stfCustomerId.getText()));
+		dto.setFirstName(stfFirstName.getText());
+		dto.setLastName(stfLastName.getText());
+		dto.setAddressId(addressId);
+		return dto;
+	}
+	
+	
+
+	@FXML public void f_ChooseOrEditAddress() {
+		AddressViewHandler vh = new AddressViewHandler();
+		String fxml = vh.getCreateFormForSubject();
+		
+		FXMLLoader loader = new FXMLLoader();
+		try {
+			loader.setLocation(this.getClass().getResource(fxml));
+			AAddressController addressController = loader.getController();
+			Pane pane = loader.load();
+			Scene scene = new Scene(pane);
+			Stage stage = new Stage();
+			stage.setTitle("FORM CÍME");
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initOwner(ownerStage);
+			stage.setScene(scene);
+			
+			if(addressId != 0){
+				addressController.setAddressStateModify();
+				addressController.setAddressId(addressId);
+			}else{
+				addressController.setAddressStateNew();
+			}
+			
+			
+			stage.showAndWait();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	@Override
+	public AAddressController getAddressController() {
+		
+	}
+
+	@Override
+	public void showAddressForm() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

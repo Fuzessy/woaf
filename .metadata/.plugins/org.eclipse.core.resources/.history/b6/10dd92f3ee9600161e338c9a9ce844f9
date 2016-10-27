@@ -1,0 +1,15 @@
+package woaf.dto;
+
+import java.io.Serializable;
+
+@DTOName("Ügyfél")
+public class DTOCustomer implements Serializable{
+	@DTOName("Ügyfélkód")
+	private int customerId;
+
+	@DTOName("Vezetéknév")
+	private String lastName;
+	
+	@DTOName("Keresztnév")
+	private String firstName;
+}

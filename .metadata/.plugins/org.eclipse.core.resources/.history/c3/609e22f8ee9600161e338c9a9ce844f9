@@ -1,0 +1,36 @@
+package woaf.dto;
+
+import java.io.Serializable;
+
+public class DTOCustomerForManipulation implements Serializable{
+	private int customerId;
+	private String lastName;
+	private String firstName;
+	private int addressId;
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public int getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+	
+	
+}

@@ -1,0 +1,5 @@
+package woaf.subject.customer;
+
+public class IFCustomerController {
+
+}

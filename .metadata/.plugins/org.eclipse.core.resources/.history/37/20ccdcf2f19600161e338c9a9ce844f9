@@ -1,0 +1,112 @@
+package woaf.entities;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+import java.util.List;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.AccessType.FIELD;
+
+
+/**
+ * The persistent class for the customer database table.
+ * 
+ */
+@Entity
+@Table(name="customer")
+@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c")
+public class Customer implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="customer_id")
+	private int customerId;
+
+	@Column(name="first_name")
+	private String firstName;
+
+	@Column(name="last_name")
+	private String lastName;
+
+	//bi-directional many-to-one association to Contract
+	@OneToMany(mappedBy="customer")
+	private List<Contract> contracts;
+
+	//bi-directional many-to-one association to Address
+	@ManyToOne(fetch = LAZY)
+	@JoinColumn(name="primary_address_id")
+	@Column(nullable = false)
+	private Address address;
+
+	//bi-directional many-to-one association to State
+	@ManyToOne
+	@JoinColumn(name="state_id")
+	private State state;
+
+	public Customer() {
+	}
+
+	public int getCustomerId() {
+		return this.customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public List<Contract> getContracts() {
+		return this.contracts;
+	}
+
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	public Contract addContract(Contract contract) {
+		getContracts().add(contract);
+		contract.setCustomer(this);
+
+		return contract;
+	}
+
+	public Contract removeContract(Contract contract) {
+		getContracts().remove(contract);
+		contract.setCustomer(null);
+
+		return contract;
+	}
+
+	public Address getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public State getState() {
+		return this.state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+}

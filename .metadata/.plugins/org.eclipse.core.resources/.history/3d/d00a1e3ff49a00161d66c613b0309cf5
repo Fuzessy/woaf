@@ -1,0 +1,13 @@
+package woaf.dao;
+
+import javax.persistence.EntityManager;
+
+public class SubjectByStateDao {
+	private EntityManager em;
+	
+	public SubjectByStateDao(EntityManager em){
+		this.em = em;
+	}
+	
+	
+}
